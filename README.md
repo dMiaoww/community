@@ -15,3 +15,15 @@ A Community Demo
   <version>3.3.0</version>
 </dependency>
 ```
+3.[thymeleaf](https://www.jianshu.com/p/5bbac20348ec)
+4.[Spring boot](https://spring.io/guides/gs/spring-boot/)
+
+## 功能实现
+#### 连接到 mysql 数据库
+在application.properties文件中添加
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/community?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&serverTimezone=GMT
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+```
