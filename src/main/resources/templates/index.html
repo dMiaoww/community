@@ -1,8 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- 头标签 --->
 <head>
+    <!-- 指定整个网页的标题，在浏览器最上方显示 -->
     <title>苗苗社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Description" content="苗苗社区是一个有趣的社区。"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
     <script src="bootstrap.min.js" type="application/javascript"></script>
@@ -34,10 +37,10 @@
                 <li class="dropdown" th:if="${session.user!=null}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">消息中心</a></li>
-                        <li><a href="#">个人资料</a></li>
-                        <li><a href="#">退出登陆</a></li>
-                    </ul>
+                    <li><a href="#">消息中心</a></li>
+                    <li><a href="#">个人资料</a></li>
+                    <li><a href="#">退出登陆</a></li>
+                </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
