@@ -59,9 +59,15 @@ flyway.validate-on-migrate=false
 
 ## 包的作用
 Controller: 处理页面的跳转等任务
+
 DTO：
+
 mapper：对数据表中的数据进行增删改查操作
+
 model：与数据表对应的类
+
 provider：
+
 resources.db.migration: flyway的sql文件，对数据库进行操作
+
 resources.templates：存储html文件
