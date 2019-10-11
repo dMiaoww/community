@@ -16,7 +16,9 @@ A Community Demo
 </dependency>
 ```
 3.[thymeleaf](https://www.jianshu.com/p/5bbac20348ec)
+
 4.[Spring boot](https://spring.io/guides/gs/spring-boot/)
+
 5.[flyway, 数据库版本管理工具,要运行 mvn 指令需以管理员方式打开IDEA](https://flywaydb.org/getstarted/firststeps/maven)
 
 ## 功能实现
@@ -31,15 +33,15 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 #### flyway的依赖信息
 ```
 <plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>5.2.4</version>
-				<configuration>
-					<url>jdbc:mysql://localhost:3306/community?serverTimezone=UTC</url>
-					<user>root</user>
-					<password>root</password>
-				</configuration>
-			</plugin>
+	<groupId>org.flywaydb</groupId>
+	<artifactId>flyway-maven-plugin</artifactId>
+	<version>5.2.4</version>
+    <configuration>
+		<url>jdbc:mysql://localhost:3306/community?serverTimezone=UTC</url>
+		<user>root</user>
+		<password>root</password>
+	</configuration>
+</plugin>
 ```
 配置信息, 添加在 application.properties 文件中
 ```
