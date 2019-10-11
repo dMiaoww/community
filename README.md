@@ -25,7 +25,7 @@ A Community Demo
 #### 连接到 mysql 数据库
 在application.properties文件中添加
 ```
-spring.datasource.url=jdbc:mysql://localhost:3306/community?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&serverTimezone=GMT
+spring.datasource.url=jdbc:mysql://localhost:3306/community?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&serverTimezone=Asia/Shanghai
 spring.datasource.username=root
 spring.datasource.password=
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
@@ -37,7 +37,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 	<artifactId>flyway-maven-plugin</artifactId>
 	<version>5.2.4</version>
     <configuration>
-		<url>jdbc:mysql://localhost:3306/community?serverTimezone=UTC</url>
+		<url>jdbc:mysql://localhost:3306/community?serverTimezone=Asia/Shanghai</url>
 		<user>root</user>
 		<password>root</password>
 	</configuration>
@@ -56,3 +56,12 @@ flyway.table=schemas_version
 flyway.baseline-on-migrate=true
 flyway.validate-on-migrate=false
 ```
+
+## 包的作用
+Controller: 处理页面的跳转等任务
+DTO：
+mapper：对数据表中的数据进行增删改查操作
+model：与数据表对应的类
+provider：
+resources.db.migration: flyway的sql文件，对数据库进行操作
+resources.templates：存储html文件
