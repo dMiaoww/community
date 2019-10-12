@@ -21,6 +21,7 @@ A Community Demo
 
 5.[flyway, 数据库版本管理工具,要运行 mvn 指令需以管理员方式打开IDEA](https://flywaydb.org/getstarted/firststeps/maven)
 
+6.[Lombok](https://projectlombok.org/)
 ## 功能实现
 #### 连接到 mysql 数据库
 在application.properties文件中添加
