@@ -12,6 +12,6 @@ public class User {
     private String token;
     private Date gmtCreate;
     private Date gmtModified;
-    private String avatarURL;
+    private String avatar_url;
 
 }

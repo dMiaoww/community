@@ -2,12 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- 头标签 --->
 <head>
-    <!-- 指定整个网页的标题，在浏览器最上方显示 -->
+    <!-- titlt 标签指定整个网页的标题，在浏览器最上方显示 -->
     <title>苗苗社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="Description" content="苗苗社区是一个有趣的社区。"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="css/community.css"/>
     <script src="bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
@@ -19,7 +22,7 @@
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">苗苗社区</span>
             </button>
-            <a class="navbar-brand" href="#">苗苗社区</a>
+            <a class="navbar-brand" href="/">苗苗社区</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,6 +54,36 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
-</nav>
+</nav><!-- 导航条 -->
+<div class="container-fluid main">
+    <div class="row">
+        <!-- 页面布局 -->
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
+            <div class="media" th:each="question : ${questions}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-circle" th:src="${question.user.avatar_url}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="#">
+                        <h4 class="media-heading" th:text="${question.title}"></h4>
+                    </a>
+                    <span th:text="${question.description}"></span> <br>
+                    <span class="text-desc">
+                        <span th:text="${question.comment_count}"></span> 个回复· <span
+                            th:text="${question.view_count}"></span> 次浏览· <span
+                            th:text="${#dates.format(question.gmt_Modified,'yyyy-MM-dd')}"></span>
+                    </span>
+                </div>
+            </div>
+        </div><!-- 问题列表 -->
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热门话题</h3>
+        </div><!-- 热门话题 -->
+    </div>
+</div>
 </body>
 <html/>

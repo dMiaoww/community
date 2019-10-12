@@ -1,13 +1,20 @@
 body{
     background-color : #efefef;
 }
-
 .main{
     background-color : white;
     margin:30px;
 }
-
 .btn-publish{
     float: right;
     margin-bottom: 10px;
+}
+.media-object{
+    width : 70px;
+    height : 70px;
+}
+.text-desc{
+    font-size : 12px;
+    font-weight : normal;
+    color : #999;
 }

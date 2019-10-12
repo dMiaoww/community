@@ -21,7 +21,9 @@ A Community Demo
 
 5.[flyway, 数据库版本管理工具,要运行 mvn 指令需以管理员方式打开IDEA](https://flywaydb.org/getstarted/firststeps/maven)
 
-6.[Lombok](https://projectlombok.org/)
+6.[Lombok,简化getter，setter等方法](https://projectlombok.org/)
+
+7.[MyBatis,数据库的增删改查](https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/index.html)
 ## 功能实现
 #### 连接到 mysql 数据库
 在application.properties文件中添加
@@ -61,7 +63,7 @@ flyway.validate-on-migrate=false
 ## 包的作用
 Controller: 处理页面的跳转等任务
 
-DTO：
+DTO：传输层
 
 mapper：对数据表中的数据进行增删改查操作
 
@@ -72,3 +74,6 @@ provider：
 resources.db.migration: flyway的sql文件，对数据库进行操作
 
 resources.templates：存储html文件
+
+## 一些说明
+question 表中 creator 字段存储的是 user 的 id ，id 根据 token 创建 ，一个账户会有多个 token，总而有多条记录

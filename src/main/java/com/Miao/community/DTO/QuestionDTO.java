@@ -1,11 +1,12 @@
-package com.Miao.community.model;
+package com.Miao.community.DTO;
 
+import com.Miao.community.model.User;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class Question {
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -16,6 +17,5 @@ public class Question {
     private Integer like_count;
     private Integer view_count;
     private Integer comment_count;
-
-    //integer 可以区分出未赋值和值为0的区别
+    private User user;
 }
