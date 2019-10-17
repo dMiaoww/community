@@ -17,7 +17,7 @@ A Community Demo
 ```
 3.[thymeleaf](https://www.jianshu.com/p/5bbac20348ec)
 
-4.[Spring boot](https://spring.io/guides/gs/spring-boot/)
+4.[Spring boot](https://docs.spring.io/spring-boot/docs/2.2.0.RC1/reference/htmlsingle/)
 
 5.[flyway, 数据库版本管理工具,要运行 mvn 指令需以管理员方式打开IDEA](https://flywaydb.org/getstarted/firststeps/maven)
 
@@ -59,7 +59,18 @@ flyway.table=schemas_version
 flyway.baseline-on-migrate=true
 flyway.validate-on-migrate=false
 ```
+8. 自动部署
+```
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+```
+在setting里compiler，勾选 build project automatically，然后按 Crtl + shift + alt + ？ 选择registry，勾选compiler.automake.allow.when.app.running
 
+在chrome中安装LiveReload插件，可免除手动刷新的步骤
 ## 包的作用
 Controller: 处理页面的跳转等任务
 
