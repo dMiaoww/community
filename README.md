@@ -15,7 +15,7 @@ A Community Demo
   <version>3.3.0</version>
 </dependency>
 ```
-3.[thymeleaf](https://www.jianshu.com/p/5bbac20348ec)
+3.[thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
 
 4.[Spring boot](https://docs.spring.io/spring-boot/docs/2.2.0.RC1/reference/htmlsingle/)
 
