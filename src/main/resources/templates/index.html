@@ -35,7 +35,8 @@
                     <span class="text-desc">
                         <span th:text="${question.comment_count}"></span> 个回复 • <span
                             th:text="${question.view_count}"></span> 次浏览 • <span
-                            th:text="${#dates.format(question.gmt_Modified,'yyyy-MM-dd HH:mm')}"></span><!-- 2019-10-12 13:36-->
+                            th:text="${#dates.format(question.gmt_Modified,'yyyy-MM-dd HH:mm')}"></span>
+                        <!-- 2019-10-12 13:36-->
                     </span>
                 </div>
             </div>
@@ -47,7 +48,8 @@
                         </a>
                     </li>
                     <li>
-                        <a th:href="@{/(page=${pagination.currentPage-1})}" aria-label="Previous" th:if="${pagination.jumpPrevious}">
+                        <a th:href="@{/(page=${pagination.currentPage-1})}" aria-label="Previous"
+                           th:if="${pagination.jumpPrevious}">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
@@ -55,12 +57,14 @@
                         <a th:href="@{/(page=${page})}" th:text="${page}"></a>
                     </li>
                     <li>
-                        <a th:href="@{/(page=${pagination.currentPage+1})}" aria-label="Previous" th:if="${pagination.jumpNextPage}">
+                        <a th:href="@{/(page=${pagination.currentPage+1})}" aria-label="Previous"
+                           th:if="${pagination.jumpNextPage}">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <li>
-                        <a th:href="@{/(page=${pagination.totalPage})}" aria-label="Previous" th:if="${pagination.jumpLastPage}">
+                        <a th:href="@{/(page=${pagination.totalPage})}" aria-label="Previous"
+                           th:if="${pagination.jumpLastPage}">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>

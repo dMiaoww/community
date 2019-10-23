@@ -28,27 +28,28 @@ public class PaginationDTO {
         this.jumpNextPage = true;
         this.jumpLastPage = true;
 
-        if (page <= 3) {
+        if (this.currentPage == 1) {
+            this.jumpPrevious = false;
             this.jumpFistPage = false;
-            for (Integer i = 1; i <= 5; i++) {
+        }
+        if (this.currentPage == this.totalPage) {
+            this.jumpNextPage = false;
+            this.jumpLastPage = false;
+        }
+
+        if (this.currentPage <= 3) {
+            for (Integer i = 1; i <= this.totalPage && i <= 5; i++) {
                 pages.add(i);
-            }
-            if (page == 1) {
-                this.jumpPrevious = false;
             }
         }
-        else if (page >= this.totalPage - 2) {
-            this.jumpLastPage = false;
+        else if (this.currentPage >= this.totalPage - 2) {
             for (Integer i = this.totalPage - 4; i <= this.totalPage; i++) {
-                pages.add(i);
-            }
-            if (page == this.totalPage) {
-                this.jumpNextPage = false;
+                if (i > 0) pages.add(i);
             }
         }
         else {
-            for (Integer i = 1; i <= 5; i++) {
-                pages.add(page - 3 + i);
+            for (Integer i = 1; i <= 5 && i <= this.totalPage; i++) {
+                pages.add(this.currentPage - 3 + i);
             }
         }
     }

@@ -24,16 +24,19 @@
             <form action="/publish" method="post">
                 <div class="form-group">
                     <label for="title">问题标题:</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="问题标题" th:value="${title}">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="问题标题"
+                           th:value="${title}">
                     <!-- placeholder 输入框为空时的填充文字 -->
                 </div>
                 <div class="form-group">
                     <label for="description">问题描述:</label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10" th:text="${description}"></textarea>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="10"
+                              th:text="${description}"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="tag">添加标签：</label>
-                    <input type="text" class="form-control" id="tag" name="tag" placeholder="创建或搜索新话题" th:value="${tag}">
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="创建或搜索新话题"
+                           th:value="${tag}">
                 </div>
                 <span class="alert alert-danger" th:if="${error!=null}" th:text="${error}"></span>
                 <button type="submit" class="btn btn-info btn-publish">发布</button>
