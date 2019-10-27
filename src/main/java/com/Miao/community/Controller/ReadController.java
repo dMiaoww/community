@@ -5,6 +5,7 @@ import com.Miao.community.mapper.QuestionMapper;
 import com.Miao.community.mapper.Usermapper;
 import com.Miao.community.model.Question;
 import com.Miao.community.model.User;
+import com.Miao.community.service.QuestionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,19 +24,14 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ReadController {
     @Autowired
-    QuestionMapper questionMapper;
+    QuestionService questionService;
     @Autowired
     Usermapper usermapper;
 
     @GetMapping("/read")
     public String read(@RequestParam(name = "qid") Integer qid,
                        Model model){
-
-        Question question = questionMapper.findByID(qid);
-        User user = usermapper.findByAccountId(question.getCreator());
-        QuestionDTO questionDTO = new QuestionDTO();
-        BeanUtils.copyProperties(question, questionDTO);  //将 question 对象的属性复制到 questionDTO 对象上
-        questionDTO.setUser(user);
+        QuestionDTO questionDTO = questionService.findByID(qid);
         model.addAttribute("targetQuestion",questionDTO);
         return "read";
     }

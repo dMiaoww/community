@@ -61,4 +61,13 @@ public class QuestionService {
         paginationDTO.setPagination(totalCount,page,size);
         return paginationDTO;
     }
+
+    public QuestionDTO findByID(Integer qid) {
+        Question question = questionMapper.findByID(qid);
+        User user = usermapper.findByAccountId(question.getCreator());
+        QuestionDTO questionDTO = new QuestionDTO();
+        BeanUtils.copyProperties(question, questionDTO);  //将 question 对象的属性复制到 questionDTO 对象上
+        questionDTO.setUser(user);
+        return questionDTO;
+    }
 }
