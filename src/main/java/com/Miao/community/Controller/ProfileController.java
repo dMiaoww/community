@@ -21,11 +21,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class ProfileController {
-    private String token;
     @Autowired
-    private Usermapper usermapper;
-    @Autowired
-    private QuestionService questionService;
+    QuestionService questionService;
 
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action") String action,
@@ -33,20 +30,8 @@ public class ProfileController {
                           @RequestParam(name = "page",defaultValue = "1") Integer page,
                           @RequestParam(name = "size",defaultValue = "6") Integer size,
                           Model model){
-        User user = null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies != null && cookies.length != 0){
-            for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("token")){
-                    token = cookie.getValue();
-                    break;
-                }
-            }
-            user = usermapper.finByToken(token);
-            if(user != null){
-                request.getSession().setAttribute("user",user);
-            }
-        }
+
+        User user = (User)request.getSession().getAttribute("user");
         if(user == null){
             return "redirect:/";
         }

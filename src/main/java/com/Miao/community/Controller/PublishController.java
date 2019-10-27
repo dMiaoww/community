@@ -17,14 +17,10 @@ import java.util.Date;
 
 @Controller
 public class PublishController {
-    private String token;
-    private User user = null;
     private Question question = new Question();
 
     @Autowired
-    private QuestionMapper questionMapper;
-    @Autowired
-    private Usermapper usermapper;
+    QuestionMapper questionMapper;
 
     @GetMapping("/publish")
     public String publish(){
@@ -55,18 +51,7 @@ public class PublishController {
             model.addAttribute("error","问题标签不能为空！");
             return "publish";
         }
-        //获取当前登陆的id
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("token")){
-                token = cookie.getValue();
-                user = usermapper.finByToken(token);
-                if(user != null){
-                    request.getSession().setAttribute("user",user);
-                }
-                break;
-            }
-        }
+        User user = (User)request.getSession().getAttribute("user");
         if(user == null){
             model.addAttribute("error","请先登录！");
             return "publish";
