@@ -13,7 +13,13 @@ public interface QuestionMapper {
     void create(Question question);
 
     @Select("select * from question order by gmt_Modified DESC limit #{size} offset #{offset}")
-    List<Question> allList(Integer offset, Integer size);
+    List<Question> newList(Integer offset, Integer size);
+
+    @Select("SELECT * FROM question ORDER BY comment_count DESC limit #{size} offset #{offset}")
+    List<Question> hotList(Integer offset, Integer size);
+
+    @Select("SELECT * FROM question WHERE comment_count = 0 ORDER BY gmt_Modified DESC limit #{size} offset #{offset}")
+    List<Question> zeroList(Integer offset, Integer size);
 
     @Select("SELECT COUNT(id) FROM question")
     Integer questionCount();
@@ -26,4 +32,7 @@ public interface QuestionMapper {
 
     @Select("SELECT * FROM question where id = #{id}")
     Question findByID(Integer id);
+
+    @Select("SELECT COUNT(id) FROM question where comment_count = 0")
+    Integer questionCountWithNoComment();
 }

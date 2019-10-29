@@ -20,13 +20,13 @@ public class QuestionService {
     @Autowired
     private Usermapper usermapper;
 
-    //用于首页显示所有问题
-    public PaginationDTO list(Integer page, Integer size) {
+    //用于首页显示最新问题
+    public PaginationDTO newList(Integer page, Integer size) {
         //当前数据库中的问题总数
         Integer totalCount = questionMapper.questionCount();
         //select语句的偏移量
         Integer offset = size * (page - 1);
-        List<Question> questionList = questionMapper.allList(offset,size);
+        List<Question> questionList = questionMapper.newList(offset,size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PaginationDTO paginationDTO = new PaginationDTO();
         for (Question question : questionList) {
@@ -62,6 +62,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
+    //根据question的id查找question和对应的user
     public QuestionDTO findByID(Integer qid) {
         Question question = questionMapper.findByID(qid);
         User user = usermapper.findByAccountId(question.getCreator());
@@ -69,5 +70,47 @@ public class QuestionService {
         BeanUtils.copyProperties(question, questionDTO);  //将 question 对象的属性复制到 questionDTO 对象上
         questionDTO.setUser(user);
         return questionDTO;
+    }
+
+    //用于首页显示最热问题
+    public PaginationDTO hotList(Integer page, Integer size) {
+        //当前数据库中的问题总数
+        Integer totalCount = questionMapper.questionCount();
+        //select语句的偏移量
+        Integer offset = size * (page - 1);
+        List<Question> questionList = questionMapper.hotList(offset,size);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        PaginationDTO paginationDTO = new PaginationDTO();
+        for (Question question : questionList) {
+            User user = usermapper.findByAccountId(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(question, questionDTO);  //将 question 对象的属性复制到 questionDTO 对象上
+            questionDTO.setUser(user);
+            questionDTOList.add(questionDTO);
+        }
+        paginationDTO.setQuestionDTOS(questionDTOList);
+        paginationDTO.setPagination(totalCount,page,size);
+        return paginationDTO;
+    }
+
+    //用于首页显示零回复的问题
+    public PaginationDTO zeroList(Integer page, Integer size) {
+        //当前数据库中的问题总数
+        Integer totalCount = questionMapper.questionCountWithNoComment();
+        //select语句的偏移量
+        Integer offset = size * (page - 1);
+        List<Question> questionList = questionMapper.zeroList(offset,size);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        PaginationDTO paginationDTO = new PaginationDTO();
+        for (Question question : questionList) {
+            User user = usermapper.findByAccountId(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(question, questionDTO);  //将 question 对象的属性复制到 questionDTO 对象上
+            questionDTO.setUser(user);
+            questionDTOList.add(questionDTO);
+        }
+        paginationDTO.setQuestionDTOS(questionDTOList);
+        paginationDTO.setPagination(totalCount,page,size);
+        return paginationDTO;
     }
 }

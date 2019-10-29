@@ -19,17 +19,29 @@ import java.util.List;
 
 
 @Controller
-public class IndexController{
+public class IndexController {
     @Autowired
     private QuestionService questionService;
 
     @GetMapping("/")
     public String index(Model model,
-                        @RequestParam(name = "page",defaultValue = "1") Integer page,
-                        @RequestParam(name = "size",defaultValue = "6") Integer size) {
+                        @RequestParam(name = "sort", defaultValue = "new") String sort,
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "size", defaultValue = "6") Integer size) {
 
-        PaginationDTO pagination = questionService.list(page,size);
-        model.addAttribute("pagination",pagination);
+        if ("zero".equals(sort)) {
+            PaginationDTO zeroPagination = questionService.zeroList(page, size);
+            model.addAttribute("pagination", zeroPagination);
+        }
+        else if ("hot".equals(sort)) {
+            PaginationDTO hotPagination = questionService.hotList(page, size);
+            model.addAttribute("pagination", hotPagination);
+        }
+        else {
+            PaginationDTO newPagination = questionService.newList(page, size);
+            model.addAttribute("pagination", newPagination);
+        }
+        model.addAttribute("sort", sort);
         return "index";
     }
 

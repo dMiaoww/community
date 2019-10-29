@@ -18,19 +18,23 @@
 <div th:insert="navbar :: nav"></div>
 <div class="container-fluid main">
     <div class="row">
-        <!-- 页面布局 -->
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
-            <div class="media" th:each="question : ${pagination.questionDTOS}">
+            <ul class="nav nav-tabs">
+                <li role="presentation" th:class="${sort=='new'}?'active':''"><a href="/?sort=new">最新</a></li>
+                <li role="presentation" th:class="${sort=='hot'}?'active':''"><a href="/?sort=hot">最热</a></li>
+                <li role="presentation" th:class="${sort=='zero'}?'active':''"><a href="/?sort=zero">消灭零回复</a></li>
+            </ul>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 media" th:each="question : ${pagination.questionDTOS}">
                 <div class="media-left">
                     <a href="#">
                         <img class="big-img img-circle" th:src="${question.user.avatar_url}">
                     </a>
                 </div>
                 <div class="media-body">
-                    <a th:href="@{/read/(qid=${question.id})}">
-                        <h4 class="media-heading" th:text="${question.title}"></h4>
-                    </a>
+                    <h4 class="media-heading">
+                        <a th:text="${question.title}" th:href="@{/read/(qid=${question.id})}"></a>
+                    </h4>
                     <span th:text="${question.description}"></span> <br>
                     <span class="text-desc">
                         <span th:text="${question.comment_count}"></span> 个回复 • <span
@@ -43,27 +47,27 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li>
-                        <a th:href="@{/(page=1)}" aria-label="Previous" th:if="${pagination.jumpFistPage}">
+                        <a th:href="@{/(page=1,,sort=${sort})}" aria-label="Previous" th:if="${pagination.jumpFistPage}">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <li>
-                        <a th:href="@{/(page=${pagination.currentPage-1})}" aria-label="Previous"
+                        <a th:href="@{/(page=${pagination.currentPage-1},sort=${sort})}" aria-label="Previous"
                            th:if="${pagination.jumpPrevious}">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
                     <li th:each="page : ${pagination.pages}" th:class="${pagination.currentPage == page}?'active':''">
-                        <a th:href="@{/(page=${page})}" th:text="${page}"></a>
+                        <a th:href="@{/(page=${page},sort=${sort})}" th:text="${page}"></a>
                     </li>
                     <li>
-                        <a th:href="@{/(page=${pagination.currentPage+1})}" aria-label="Previous"
+                        <a th:href="@{/(page=${pagination.currentPage+1},sort=${sort})}" aria-label="Previous"
                            th:if="${pagination.jumpNextPage}">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <li>
-                        <a th:href="@{/(page=${pagination.totalPage})}" aria-label="Previous"
+                        <a th:href="@{/(page=${pagination.totalPage},sort=${sort})}" aria-label="Previous"
                            th:if="${pagination.jumpLastPage}">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
@@ -73,7 +77,7 @@
         </div><!-- 问题列表 -->
 
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>热门话题</h3>
+            <h3>热门标签</h3>
         </div><!-- 热门话题 -->
     </div>
 </div>
