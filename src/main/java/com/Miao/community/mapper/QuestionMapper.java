@@ -4,6 +4,7 @@ import com.Miao.community.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -35,4 +36,7 @@ public interface QuestionMapper {
 
     @Select("SELECT COUNT(id) FROM question where comment_count = 0")
     Integer questionCountWithNoComment();
+
+    @Update("update question set title = #{title}, description = #{description},gmt_Modified = #{gmt_Modified},tag  = #{tag} where id = #{id}")
+    void update(Question question);
 }

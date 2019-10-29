@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,7 +27,7 @@ public class QuestionService {
         Integer totalCount = questionMapper.questionCount();
         //select语句的偏移量
         Integer offset = size * (page - 1);
-        List<Question> questionList = questionMapper.newList(offset,size);
+        List<Question> questionList = questionMapper.newList(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PaginationDTO paginationDTO = new PaginationDTO();
         for (Question question : questionList) {
@@ -37,17 +38,17 @@ public class QuestionService {
             questionDTOList.add(questionDTO);
         }
         paginationDTO.setQuestionDTOS(questionDTOList);
-        paginationDTO.setPagination(totalCount,page,size);
+        paginationDTO.setPagination(totalCount, page, size);
         return paginationDTO;
     }
 
     //用于个人中心显示我的提问
-    public PaginationDTO list(Integer page, Integer size, String accountID){
+    public PaginationDTO list(Integer page, Integer size, String accountID) {
         //当前数据库中的我的提问总数
         Integer totalCount = questionMapper.userQuestionCount(accountID);
         //select语句的偏移量
         Integer offset = size * (page - 1);
-        List<Question> questionList = questionMapper.userList(offset,size,accountID);
+        List<Question> questionList = questionMapper.userList(offset, size, accountID);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PaginationDTO paginationDTO = new PaginationDTO();
         for (Question question : questionList) {
@@ -58,7 +59,7 @@ public class QuestionService {
             questionDTOList.add(questionDTO);
         }
         paginationDTO.setQuestionDTOS(questionDTOList);
-        paginationDTO.setPagination(totalCount,page,size);
+        paginationDTO.setPagination(totalCount, page, size);
         return paginationDTO;
     }
 
@@ -78,7 +79,7 @@ public class QuestionService {
         Integer totalCount = questionMapper.questionCount();
         //select语句的偏移量
         Integer offset = size * (page - 1);
-        List<Question> questionList = questionMapper.hotList(offset,size);
+        List<Question> questionList = questionMapper.hotList(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PaginationDTO paginationDTO = new PaginationDTO();
         for (Question question : questionList) {
@@ -89,7 +90,7 @@ public class QuestionService {
             questionDTOList.add(questionDTO);
         }
         paginationDTO.setQuestionDTOS(questionDTOList);
-        paginationDTO.setPagination(totalCount,page,size);
+        paginationDTO.setPagination(totalCount, page, size);
         return paginationDTO;
     }
 
@@ -99,7 +100,7 @@ public class QuestionService {
         Integer totalCount = questionMapper.questionCountWithNoComment();
         //select语句的偏移量
         Integer offset = size * (page - 1);
-        List<Question> questionList = questionMapper.zeroList(offset,size);
+        List<Question> questionList = questionMapper.zeroList(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PaginationDTO paginationDTO = new PaginationDTO();
         for (Question question : questionList) {
@@ -110,7 +111,23 @@ public class QuestionService {
             questionDTOList.add(questionDTO);
         }
         paginationDTO.setQuestionDTOS(questionDTOList);
-        paginationDTO.setPagination(totalCount,page,size);
+        paginationDTO.setPagination(totalCount, page, size);
         return paginationDTO;
+    }
+
+    //用于发布页面发布或更新问题
+    public void createOrUpdata(Question question) {
+        if (question.getId() == null) {
+            question.setGmt_Create(new Date(System.currentTimeMillis()));
+            question.setGmt_Modified(question.getGmt_Create());
+            question.setComment_count(0);
+            question.setLike_count(0);
+            question.setView_count(0);
+            questionMapper.create(question);
+        }
+        else {
+            question.setGmt_Modified(new Date(System.currentTimeMillis()));
+            questionMapper.update(question);
+        }
     }
 }

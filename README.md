@@ -64,11 +64,11 @@ flyway.validate-on-migrate=false
 8. 自动部署
 ```
 <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <scope>runtime</scope>
+    <optional>true</optional>
+</dependency>
 ```
 在setting里compiler，勾选 build project automatically，然后按 Crtl + shift + alt + ？ 选择registry，勾选compiler.automake.allow.when.app.running
 
