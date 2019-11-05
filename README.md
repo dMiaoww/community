@@ -26,6 +26,9 @@ A Community Demo
 7.[Lombok,简化getter，setter等方法](https://projectlombok.org/)
 
 8.[MyBatis,数据库的增删改查](https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/index.html)
+
+9.[MyBatis Generator](https://mybatis.org/generator)
+
 ## 功能实现
 #### 连接到 mysql 数据库
 在application.properties文件中添加
@@ -61,7 +64,17 @@ flyway.table=schemas_version
 flyway.baseline-on-migrate=true
 flyway.validate-on-migrate=false
 ```
-8. 自动部署
+#### MyBatis Generator
+```
+<plugin>
+          <groupId>org.mybatis.generator</groupId>
+          <artifactId>mybatis-generator-maven-plugin</artifactId>
+          <version>1.3.7</version>
+        </plugin>
+然后在终端运行以下命令：
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
+#### 自动部署
 ```
 <dependency>
     <groupId>org.springframework.boot</groupId>

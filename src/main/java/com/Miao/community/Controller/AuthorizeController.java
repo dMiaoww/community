@@ -2,7 +2,7 @@ package com.Miao.community.Controller;
 
 import com.Miao.community.DTO.AccesstokenDTO;
 import com.Miao.community.DTO.GithubUser;
-import com.Miao.community.mapper.Usermapper;
+import com.Miao.community.mapper.UserMapper;
 import com.Miao.community.model.User;
 import com.Miao.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class AuthorizeController {
     private GithubProvider githubProvider;
 
     @Autowired
-    private Usermapper usermapper;
+    private UserMapper userMapper;
 
     @Value("${github.client.id}")
     private String clientID;
@@ -52,11 +52,11 @@ public class AuthorizeController {
             String token = UUID.randomUUID().toString();
             user.setToken(token);
             user.setName(githubUser.getLogin());
-            user.setAccountID(String.valueOf(githubUser.getId()));
-            user.setGmtCreate(new Date(System.currentTimeMillis()));
-            user.setGmtModified(user.getGmtCreate());
-            user.setAvatar_url(githubUser.getAvatar_url());
-            usermapper.insert(user);
+            user.setAccountid(String.valueOf(githubUser.getId()));
+            user.setGmtcreate(new Date(System.currentTimeMillis()));
+            user.setGmtmodified(user.getGmtcreate());
+            user.setAvatarUrl(githubUser.getAvatar_url());
+            userMapper.insert(user);
             //写cookie和session
             response.addCookie(new Cookie("token",token));
             return "redirect:/";

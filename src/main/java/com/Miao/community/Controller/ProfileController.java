@@ -1,7 +1,6 @@
 package com.Miao.community.Controller;
 
 import com.Miao.community.DTO.PaginationDTO;
-import com.Miao.community.mapper.Usermapper;
 import com.Miao.community.model.User;
 import com.Miao.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -22,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ProfileController {
     @Autowired
-    QuestionService questionService;
+    private QuestionService questionService;
 
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action") String action,
@@ -39,7 +37,7 @@ public class ProfileController {
         if("questions".equals(action)){
             model.addAttribute("section","questions");
             model.addAttribute("sectionName","我的提问");
-            PaginationDTO pagination = questionService.list(page,size,user.getAccountID());
+            PaginationDTO pagination = questionService.list(page,size,user.getAccountid());
             model.addAttribute("pagination",pagination);
         }
         else if("comments".equals(action)){

@@ -1,8 +1,6 @@
 package com.Miao.community.Controller;
 
 import com.Miao.community.DTO.QuestionDTO;
-import com.Miao.community.mapper.QuestionMapper;
-import com.Miao.community.mapper.Usermapper;
 import com.Miao.community.model.Question;
 import com.Miao.community.model.User;
 import com.Miao.community.service.QuestionService;
@@ -14,16 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 @Controller
 public class PublishController {
     private Question question = new Question();
 
     @Autowired
-    QuestionService questionService;
+    private QuestionService questionService;
 
     @GetMapping("/publish/{qid}")
     public String edit(@PathVariable(name="qid") Integer qid,
@@ -74,9 +70,9 @@ public class PublishController {
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
-        question.setCreator(user.getAccountID());
+        question.setCreator(user.getAccountid());
         question.setId(id);
-        questionService.createOrUpdata(question);
+        questionService.createOrUpdate(question);
         //发布成功，返回主页面
         return "redirect:/";
     }

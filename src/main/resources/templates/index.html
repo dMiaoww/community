@@ -28,7 +28,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 media" th:each="question : ${pagination.questionDTOS}">
                 <div class="media-left">
                     <a href="#">
-                        <img class="big-img img-circle" th:src="${question.user.avatar_url}">
+                        <img class="big-img img-circle" th:src="${question.user.avatarUrl}">
                     </a>
                 </div>
                 <div class="media-body">
@@ -37,9 +37,9 @@
                     </h4>
                     <span th:text="${question.description}"></span> <br>
                     <span class="text-desc">
-                        <span th:text="${question.comment_count}"></span> 个回复 • <span
-                            th:text="${question.view_count}"></span> 次浏览 • <span
-                            th:text="${#dates.format(question.gmt_Modified,'yyyy-MM-dd HH:mm')}"></span>
+                        <span th:text="${question.commentCount}"></span> 个回复 • <span
+                            th:text="${question.viewCount}"></span> 次浏览 • <span
+                            th:text="${#dates.format(question.gmtModified,'yyyy-MM-dd HH:mm')}"></span>
                         <!-- 2019-10-12 13:36-->
                     </span>
                 </div>
