@@ -35,7 +35,7 @@
                     <a th:href="@{'/publish/'+${targetQuestion.id}}">
                         <span class="glyphicon glyphicon-comment text-desc" aria-hidden="true">&thinsp;添加评论&nbsp;</span>
                     </a>
-                    <a th:href="@{'/publish/'+${targetQuestion.id}}" th:if="${session.user.accountid == targetQuestion.user.accountid}">
+                    <a th:href="@{'/publish/'+${targetQuestion.id}}" th:if="${(session.user != null) and (targetQuestion.user.accountid == session.user.accountid)}">
                         <span class="glyphicon glyphicon-edit text-desc" aria-hidden="true">&thinsp;编辑</span>
                     </a>
                 </div>

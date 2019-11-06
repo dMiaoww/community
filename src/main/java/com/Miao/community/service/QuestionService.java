@@ -2,6 +2,8 @@ package com.Miao.community.service;
 
 import com.Miao.community.DTO.PaginationDTO;
 import com.Miao.community.DTO.QuestionDTO;
+import com.Miao.community.exception.CustomizeErrorCode;
+import com.Miao.community.exception.CustomizeException;
 import com.Miao.community.mapper.QuestionMapper;
 import com.Miao.community.mapper.UserMapper;
 import com.Miao.community.model.Question;
@@ -89,6 +91,9 @@ public class QuestionService {
         questionExample.createCriteria()
                 .andIdEqualTo(qid);
         List<Question> questions = questionMapper.selectByExampleWithBLOBs(questionExample);
+        if(questions.size() == 0){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         UserExample userExample = new UserExample();
         userExample.createCriteria()
                 .andAccountidEqualTo(questions.get(0).getCreator());
@@ -179,7 +184,10 @@ public class QuestionService {
             updateQuestion.setTitle(question.getTitle());
             updateQuestion.setDescription(question.getDescription());
             updateQuestion.setTag(question.getTag());
-            questionMapper.updateByExampleSelective(updateQuestion,questionExample);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion,questionExample);
+            if(updated != 1){
+                throw new CustomizeException(CustomizeErrorCode.UPDATE_FAILED);
+            }
         }
     }
 }
