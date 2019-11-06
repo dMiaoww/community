@@ -10,6 +10,7 @@
                         connectionURL="jdbc:mysql://localhost:3306/community?useUnicode=true&amp;characterEncoding=utf8&amp;characterSetResults=utf8&amp;serverTimezone=Asia/Shanghai"
                         userId="root"
                         password="root">
+            <property name="useInformationSchema" value="true"/>
         </jdbcConnection>
 
         <javaTypeResolver>

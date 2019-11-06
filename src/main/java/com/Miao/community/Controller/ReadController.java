@@ -21,6 +21,8 @@ public class ReadController {
     @GetMapping("/read")
     public String read(@RequestParam(name = "qid") Integer qid,
                        Model model){
+        //累加阅读数
+        questionService.incView(qid);
         QuestionDTO questionDTO = questionService.findByID(qid);
         model.addAttribute("targetQuestion",questionDTO);
         return "read";

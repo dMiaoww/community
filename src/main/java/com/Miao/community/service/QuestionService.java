@@ -190,4 +190,15 @@ public class QuestionService {
             }
         }
     }
+
+    //点击页面增加问题的阅读数
+    public void incView(Integer qid) {
+        Question updateQuestion = new Question();
+        QuestionExample example = new QuestionExample();
+        example.createCriteria()
+                .andIdEqualTo(qid);
+        Question question = questionMapper.selectByPrimaryKey(qid);
+        updateQuestion.setViewCount(question.getViewCount()+1);
+        questionMapper.updateByExampleSelective(updateQuestion,example);
+    }
 }

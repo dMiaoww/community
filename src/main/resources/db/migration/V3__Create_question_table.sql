@@ -9,5 +9,6 @@ CREATE TABLE `community`.`question`(
   `like_count` INT(16) NOT NULL,
   `comment_count` INT(16) NOT NULL,
   `tag` VARCHAR(256),
+   PRIMARY KEY (`id`),
    KEY(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
