@@ -35,7 +35,8 @@
                     <a th:href="@{'/publish/'+${targetQuestion.id}}">
                         <span class="glyphicon glyphicon-comment text-desc" aria-hidden="true">&thinsp;添加评论&nbsp;</span>
                     </a>
-                    <a th:href="@{'/publish/'+${targetQuestion.id}}" th:if="${(session.user != null) and (targetQuestion.user.accountid == session.user.accountid)}">
+                    <a th:href="@{'/publish/'+${targetQuestion.id}}"
+                       th:if="${(session.user != null) and (targetQuestion.user.accountid == session.user.accountid)}">
                         <span class="glyphicon glyphicon-edit text-desc" aria-hidden="true">&thinsp;编辑</span>
                     </a>
                 </div>
@@ -65,8 +66,9 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>提交回复</h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
-                    <div class="media" th:if="${session.user != null}">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section"
+                     th:if="${session.user != null}">
+                    <div class="media">
                         <div class="media-left">
                             <a href="#">
                                 <img class="small-img img-rounded" style="margin-bottom:10px;"
@@ -83,13 +85,19 @@
                     <button type="submit" class="btn btn-info btn-publish" style="margin: 10px;" onclick="post()">回复
                     </button>
                 </div>
+                <div th:if="${session.user == null}">
+                    <span class="btn btn-login" >
+                        <a href="https://github.com/login/oauth/authorize?client_id=ed0f78a8629a58dc8dab&redirect_uri=http://localhost:8080/callback&scope=user&state=1" style="color:aliceblue;">
+                        登陆</a></span>
+                    <span> 后才可以发表评论┗|｀O′|┛ 嗷~~</span>
+                </div>
             </div>
 
         </div>
 
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h3 >发起人</h3>
+                <h3>发起人</h3>
                 <div class="media">
                     <div class="media-left">
                         <a href="#">
