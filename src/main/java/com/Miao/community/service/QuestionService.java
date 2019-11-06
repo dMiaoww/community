@@ -4,6 +4,7 @@ import com.Miao.community.DTO.PaginationDTO;
 import com.Miao.community.DTO.QuestionDTO;
 import com.Miao.community.exception.CustomizeErrorCode;
 import com.Miao.community.exception.CustomizeException;
+import com.Miao.community.mapper.QuestionExtMapper;
 import com.Miao.community.mapper.QuestionMapper;
 import com.Miao.community.mapper.UserMapper;
 import com.Miao.community.model.Question;
@@ -25,6 +26,8 @@ public class QuestionService {
     private QuestionMapper questionMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     //用于首页显示最新问题
     public PaginationDTO newList(Integer page, Integer size) {
@@ -193,12 +196,9 @@ public class QuestionService {
 
     //点击页面增加问题的阅读数
     public void incView(Integer qid) {
-        Question updateQuestion = new Question();
-        QuestionExample example = new QuestionExample();
-        example.createCriteria()
-                .andIdEqualTo(qid);
-        Question question = questionMapper.selectByPrimaryKey(qid);
-        updateQuestion.setViewCount(question.getViewCount()+1);
-        questionMapper.updateByExampleSelective(updateQuestion,example);
+        Question question = new Question();
+        question.setId(qid);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }

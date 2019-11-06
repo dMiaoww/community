@@ -61,7 +61,7 @@ public class AuthorizeController {
             userMapper.insert(user);
             //写cookie和session
             response.addCookie(new Cookie("token",token));
-            return "redirect:/";
+            return "redirect:/";//TODO:可以回到当前页面么？
         }else{
             //登陆失败，重新登陆
             return "redirect:/";
@@ -77,5 +77,6 @@ public class AuthorizeController {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
         return "redirect:/";
+        //TODO:可以回到当前页面么？
     }
 }
