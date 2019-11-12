@@ -201,4 +201,12 @@ public class QuestionService {
         question.setViewCount(1);
         questionExtMapper.incView(question);
     }
+
+    //增加问题的回复数
+    public void incComment(Integer qid){
+        Question question = new Question();
+        question.setId(qid);
+        question.setCommentCount(1);
+        questionExtMapper.incComment(question);
+    }
 }

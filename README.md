@@ -29,6 +29,8 @@ A Community Demo
 
 9.[MyBatis Generator](https://mybatis.org/generator)
 
+10. PostMan
+
 ## 功能实现
 #### 连接到 mysql 数据库
 在application.properties文件中添加

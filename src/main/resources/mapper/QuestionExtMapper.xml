@@ -32,4 +32,11 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="incComment" parameterType="com.Miao.community.model.Question">
+    update question
+    <set>
+      comment_count = comment_count + #{commentCount,jdbcType=INTEGER},
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

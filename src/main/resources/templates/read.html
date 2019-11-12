@@ -32,12 +32,15 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${targetQuestion.description}"></div>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <a th:href="@{'/publish/'+${targetQuestion.id}}">
+                    <a href="#">
                         <span class="glyphicon glyphicon-comment text-desc" aria-hidden="true">&thinsp;添加评论&nbsp;</span>
                     </a>
                     <a th:href="@{'/publish/'+${targetQuestion.id}}"
                        th:if="${(session.user != null) and (targetQuestion.user.accountid == session.user.accountid)}">
-                        <span class="glyphicon glyphicon-edit text-desc" aria-hidden="true">&thinsp;编辑</span>
+                        <span class="glyphicon glyphicon-edit text-desc" aria-hidden="true">&thinsp;编辑&nbsp;</span>
+                    </a>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-bookmark text-desc" aria-hidden="true">&thinsp;收藏&nbsp;</span>
                     </a>
                 </div>
                 <!--标签-->

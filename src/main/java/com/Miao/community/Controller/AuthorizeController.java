@@ -77,6 +77,5 @@ public class AuthorizeController {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
         return "redirect:/";
-        //TODO:可以回到当前页面么？
     }
 }

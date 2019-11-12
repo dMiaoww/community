@@ -6,6 +6,7 @@ CREATE TABLE `user` (
   `gmtCreate` datetime DEFAULT NULL,
   `gmtModified` datetime DEFAULT NULL,
   `bio` varchar(256) DEFAULT NULL,
+  `avatar_url` varchar(100) NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB  CHARSET=utf8

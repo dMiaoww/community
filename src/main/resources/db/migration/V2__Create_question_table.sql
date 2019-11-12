@@ -11,4 +11,4 @@ CREATE TABLE `community`.`question`(
   `tag` VARCHAR(256),
    PRIMARY KEY (`id`),
    KEY(`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB CHARSET=utf8

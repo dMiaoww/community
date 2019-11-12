@@ -25,24 +25,29 @@ public class ProfileController {
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action") String action,
                           HttpServletRequest request,
-                          @RequestParam(name = "page",defaultValue = "1") Integer page,
-                          @RequestParam(name = "size",defaultValue = "6") Integer size,
-                          Model model){
+                          @RequestParam(name = "page", defaultValue = "1") Integer page,
+                          @RequestParam(name = "size", defaultValue = "6") Integer size,
+                          Model model) {
 
-        User user = (User)request.getSession().getAttribute("user");
-        if(user == null){
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
             return "redirect:/";
         }
 
-        if("questions".equals(action)){
-            model.addAttribute("section","questions");
-            model.addAttribute("sectionName","我的提问");
-            PaginationDTO pagination = questionService.list(page,size,user.getAccountid());
-            model.addAttribute("pagination",pagination);
-        }
-        else if("comments".equals(action)){
-            model.addAttribute("section","comments");
-            model.addAttribute("sectionName","最新回复");
+        if ("questions".equals(action)) {
+            model.addAttribute("section", "questions");
+            model.addAttribute("sectionName", "我的提问");
+            PaginationDTO pagination = questionService.list(page, size, user.getAccountid());
+            model.addAttribute("pagination", pagination);
+        } else if ("comments".equals(action)) {
+            model.addAttribute("section", "comments");
+            model.addAttribute("sectionName", "最新回复");
+        }else if ("myComment".equals(action)) {
+            model.addAttribute("section", "myComment");
+            model.addAttribute("sectionName", "我的回复");
+        }else if ("collection".equals(action)) {
+            model.addAttribute("section", "collection");
+            model.addAttribute("sectionName", "我的收藏");
         }
 
         return "profile";
