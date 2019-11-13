@@ -9,6 +9,7 @@ import com.Miao.community.model.Comment;
 import com.Miao.community.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -25,7 +26,8 @@ public class CommentSevice {
     @Autowired
     private QuestionService questionService;
 
-    //添加评论
+    //添加评论, @Transactional 注解将整个方法体封装成一个事务
+    @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);

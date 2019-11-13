@@ -35,17 +35,17 @@ public class CommentController {
     public Object post(@RequestBody CommentDTO commentDTO,
                        HttpServletRequest request,
                        Model model){
-//          User user = (User) request.getSession().getAttribute("user");
-//        //其实不需要，因为没有登陆的时候无评论框
-//        if (user == null) {
-//           return ResultDTO.errorOf(CustomizeErrorCode.NOT_LOGIN);
-//        }
+        User user = (User) request.getSession().getAttribute("user");
+        //其实不需要，因为没有登陆的时候无评论框
+        if (user == null) {
+           return ResultDTO.errorOf(CustomizeErrorCode.NOT_LOGIN);
+        }
 
         Comment comment = new Comment();
         comment.setParentId(commentDTO.getParentId());
         comment.setContent(commentDTO.getContent());
         comment.setType(commentDTO.getType());
-        comment.setCommentor("44444444");
+        comment.setCommentor(user.getAccountid());
         comment.setGmtCreate(new Date(System.currentTimeMillis()));
         comment.setGmtModified(comment.getGmtCreate());
         comment.setLikeCount(0);

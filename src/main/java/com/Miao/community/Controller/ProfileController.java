@@ -48,6 +48,9 @@ public class ProfileController {
         }else if ("collection".equals(action)) {
             model.addAttribute("section", "collection");
             model.addAttribute("sectionName", "我的收藏");
+        }else if ("information".equals(action)) {
+            model.addAttribute("section", "information");
+            model.addAttribute("sectionName", "我的资料");
         }
 
         return "profile";

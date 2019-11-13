@@ -82,6 +82,9 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${section}=='collection'">
             <h3><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> 我的收藏</h3>
         </div><!-- 我的收藏 -->
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${section}=='information'">
+            <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 我的资料</h3>
+        </div><!-- 我的资料 -->
 
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 list-group">
             <div class="list-group section">
@@ -98,6 +101,9 @@
                 <a href="/profile/collection"
                    th:class="${section == 'collection'}?'list-group-item active':'list-group-item'">
                     我的收藏</a>
+                <a href="/profile/information"
+                   th:class="${section == 'information'}?'list-group-item active':'list-group-item'">
+                    我的资料</a>
             </div>
         </div><!-- 热门话题 -->
     </div>

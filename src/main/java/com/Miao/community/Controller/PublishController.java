@@ -32,11 +32,13 @@ public class PublishController {
         return "publish";
     }
 
+    //点击提问按钮转到publish页面
     @GetMapping("/publish")
     public String publish() {
         return "publish";
     }
 
+    //点击提交按钮
     @PostMapping("/publish")
     public String doPublish(
             @RequestParam(value = "title",required = false) String title,
