@@ -31,6 +31,8 @@ A Community Demo
 
 10. PostMan
 
+11.[jQuery](https://api.jquery.com)
+
 ## 功能实现
 #### 连接到 mysql 数据库
 在application.properties文件中添加

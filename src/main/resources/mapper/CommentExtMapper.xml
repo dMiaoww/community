@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Miao.community.mapper.CommentExtMapper">
+    <resultMap id="BaseResultMap" type="com.Miao.community.model.Comment">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="commentor" jdbcType="VARCHAR" property="commentor" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Miao.community.model.Comment">
+        <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    </resultMap>
+    <update id="incLikeCount" parameterType="com.Miao.community.model.Comment">
+        update comment
+        <set>
+            like_count = like_count + #{likeCount,jdbcType=INTEGER}
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

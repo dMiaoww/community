@@ -28,9 +28,10 @@ public class UserService {
             // 插入
             user.setGmtcreate(new Date(System.currentTimeMillis()));
             user.setGmtmodified(user.getGmtcreate());
+            user.setBio("这个人很懒，什么都没有写");
             userMapper.insert(user);
         } else {
-            //更新
+            // 更新
             User dbUser = users.get(0);
             User updateUser = new User();
             updateUser.setGmtmodified(new Date(System.currentTimeMillis()));

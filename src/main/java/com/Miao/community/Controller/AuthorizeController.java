@@ -5,6 +5,7 @@ import com.Miao.community.DTO.GithubUser;
 import com.Miao.community.mapper.UserMapper;
 import com.Miao.community.model.User;
 import com.Miao.community.provider.GithubProvider;
+import com.Miao.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,8 @@ import java.util.UUID;
 public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
-
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @Value("${github.client.id}")
     private String clientID;
@@ -55,14 +55,11 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUser.getLogin());
             user.setAccountid(String.valueOf(githubUser.getId()));
-            user.setGmtcreate(new Date(System.currentTimeMillis()));
-            user.setGmtmodified(user.getGmtcreate());
             user.setAvatarUrl(githubUser.getAvatar_url());
-            user.setBio("这个人很懒，什么都没有写");
-            userMapper.insert(user);
+            userService.createOrUpdate(user);
             //写cookie和session
             response.addCookie(new Cookie("token",token));
-            return "redirect:/";//TODO:可以回到当前页面么？
+            return "redirect:/";//
         }else{
             //登陆失败，重新登陆
             return "redirect:/";
